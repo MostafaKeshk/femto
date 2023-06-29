@@ -29,30 +29,24 @@ const Goal: React.FC<IProps> = ({
     >
       <Text weight={500}>Total Goal: ${data.total.toFixed(2)}</Text>
 
-      <Text size="sm" color="dimmed">
+      <Text my="xs" size="sm">
         Goal Date: {viewDate(data.date)}
       </Text>
 
-      <Text size="sm">
-        ${monthlyDeposit.toFixed(2)}/month for {months} months
+      <Text weight="bold" color="brand" size="sm">
+        ${monthlyDeposit.toFixed(2)} monthly deposit for {months} months
       </Text>
 
-      <Group position="right">
+      <Group position="right" mt="md">
         <Button
-          color="blue"
-          mt="md"
+          color="brand"
           radius="md"
           onClick={() => handleOpenUpdate(data)}
         >
           Edit
         </Button>
 
-        <Button
-          color="red"
-          mt="md"
-          radius="md"
-          onClick={() => handleOpenDelete(data)}
-        >
+        <Button color="red" radius="md" onClick={() => handleOpenDelete(data)}>
           Delete
         </Button>
       </Group>

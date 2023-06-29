@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-const authentication = (req: any, res: any, next: any) => {
+const authentication = (req, res, next) => {
   try {
     const token = req.headers.authorization;
 
-    const decodedToken: any = jwt.verify(
+    const decodedToken = jwt.verify(
       token,
-      process.env.secretKey as string
+      process.env.secretKey 
     );
 
     req.id = decodedToken.userId;

@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Text } from "@mantine/core";
-import { Upload, Edit } from "tabler-icons-react";
+import { Box, Text, useMantineTheme } from "@mantine/core";
+import { IconUpload, IconEdit } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { styles } from "./styles";
 
@@ -23,8 +23,9 @@ const UploadImage: React.FC<IProps> = ({
   disabled = false,
   onChange,
 }) => {
+  const theme = useMantineTheme();
   const error = form.errors[name];
-  const classes = styles(disabled);
+  const classes = styles(disabled, error);
 
   const handleFile = (event: any) => {
     const file = event.target.files[0];
@@ -70,15 +71,17 @@ const UploadImage: React.FC<IProps> = ({
             </Box>
             {!disabled && (
               <Box sx={classes.editIcon}>
-                <Edit style={{ color: "black" }} />
+                <IconEdit color={theme.colors.brand[5]} size={30} />
               </Box>
             )}
           </Box>
         ) : (
-          <Upload style={{ fontSize: "40px", color: "black" }} />
+          <IconUpload color={theme.colors.brand[5]} size={30} />
         )}
       </Box>
-      <Text sx={{ textAlign: "center" }}>{error}</Text>
+      <Text mt={5} fz="xs" sx={{ textAlign: "center" }} color="red">
+        {error}
+      </Text>
     </Box>
   );
 };

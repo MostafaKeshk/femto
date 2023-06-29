@@ -1,6 +1,6 @@
-import Goal from "../models/goal";
+import Goal from "../models/goal.js";
 
-export const getGoal = async (req: any, res: any) => {
+export const getGoal = async (req, res) => {
   try {
     const goal = await Goal.findById(req.params.id);
     res.status(200).json(goal);
@@ -9,21 +9,27 @@ export const getGoal = async (req: any, res: any) => {
   }
 };
 
-export const getAllGoals = async (req: any, res: any) => {
+export const getAllGoals = async (req, res) => {
   try {
     const { pageNumber, pageSize } = req.query;
+    const id = req.id;
+
 
     const page = parseInt(pageNumber) || 1;
     const limit = parseInt(pageSize) || 10;
 
     const skip = (page - 1) * limit;
 
-    const rows = await Goal.find()
+    const filter ={
+      user:id
+    }
+
+    const rows = await Goal.find(filter)
       .skip(skip)
       .limit(limit)
       .sort({ createdAt: -1 });
 
-    const count = await Goal.countDocuments();
+    const count = await Goal.countDocuments(filter);
 
     res.status(200).json({ rows, count });
   } catch (error) {
@@ -31,12 +37,12 @@ export const getAllGoals = async (req: any, res: any) => {
   }
 };
 
-export const updateGoal = async (req: any, res: any) => {
+export const updateGoal = async (req, res) => {
   try {
     const { id } = req.params;
     const { total, date, userId } = req.body;
 
-    const goal: any = await Goal.findById(id);
+    const goal = await Goal.findById(id);
 
     if (!goal) {
       return res.status(404).json({ message: "Goal not found" });
@@ -54,7 +60,7 @@ export const updateGoal = async (req: any, res: any) => {
   }
 };
 
-export const createGoal = async (req: any, res: any) => {
+export const createGoal = async (req, res) => {
   try {
     const { total, date } = req.body;
 
@@ -71,7 +77,7 @@ export const createGoal = async (req: any, res: any) => {
   }
 };
 
-export const deleteGoal = async (req: any, res: any) => {
+export const deleteGoal = async (req, res) => {
   const { id } = req.params;
 
   try {

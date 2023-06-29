@@ -23,6 +23,7 @@ const useRegister = () => {
 
   const form = useForm({
     initialValues: {
+      image: "",
       name: "",
       email: "",
       password: "",

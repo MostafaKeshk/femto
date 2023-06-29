@@ -1,14 +1,23 @@
-import { TextInput, PasswordInput, Button, Box } from "@mantine/core";
-import useRegister from "../containers/useRegister";
-import UploadImage from "../components/Form/UploadImage";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Text,
+  Container,
+} from "@mantine/core";
+import UploadImage from "../../components/Form/UploadImage";
+import { styles } from "./styles";
+import useSettings from "../../containers/useSettings";
 
-const Register = () => {
-  const { form, handleSubmit, handleNavigateLogin, image, setImage, loading } =
-    useRegister();
-
+const Settings = () => {
+  const { form, handleSubmit, image, setImage, loading } = useSettings();
+  const classes = styles();
   return (
-    <Box maw={300} mx="auto">
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+    <Container size="xl" sx={classes.root}>
+      <Text fz={25} weight="bold" color="brand" mb="xs">
+        Settings
+      </Text>
+      <form onSubmit={form.onSubmit(handleSubmit)} style={{ width: "100%" }}>
         <UploadImage
           image={image}
           setImage={setImage}
@@ -29,6 +38,7 @@ const Register = () => {
           placeholder="your@email.com"
           {...form.getInputProps("email")}
         />
+
         <PasswordInput
           mt="sm"
           placeholder="Password"
@@ -45,15 +55,11 @@ const Register = () => {
         />
 
         <Button mt="sm" type="submit" fullWidth loading={loading}>
-          Submit
+          Update
         </Button>
       </form>
-
-      <Button mt="sm" type="submit" onClick={handleNavigateLogin}>
-        Login
-      </Button>
-    </Box>
+    </Container>
   );
 };
 
-export default Register;
+export default Settings;

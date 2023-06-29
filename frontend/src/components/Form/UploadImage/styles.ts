@@ -1,6 +1,6 @@
 import { CSSObject } from "@mantine/core";
 
-export const styles = (disabled: boolean) => ({
+export const styles = (disabled: boolean, error: any) => ({
   flex: {
     width: "100%",
     display: "flex",
@@ -9,19 +9,19 @@ export const styles = (disabled: boolean) => ({
     flexDirection: "column",
   } as CSSObject,
 
-  center: {
+  center: (theme: any): CSSObject => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
     position: "relative",
-    height: "105px",
-    width: "105px",
+    height: "100px",
+    width: "100px",
     borderRadius: "100px",
     cursor: disabled ? "cursor" : "pointer",
     backgroundColor: "#fff",
-    border: `7.5px solid black`,
-  } as CSSObject,
+    border: `7.5px solid ${error ? "red" : theme.colors.brand[5]}`,
+  }),
   editIcon: {
     position: "absolute",
     zIndex: 1130,

@@ -56,8 +56,8 @@ const GoalModal: React.FC<IProps> = ({
           {...form.getInputProps("date")}
         />
         {form.values.total && form.values.date && (
-          <Text>
-            ${monthlyDeposit.toFixed(2)}/month for {months} months
+          <Text mt="xs" weight="bold" color="brand" fz={14}>
+            ${monthlyDeposit.toFixed(2)} monthly deposit for {months} months
           </Text>
         )}
         <Button mt="sm" type="submit" fullWidth loading={loading}>

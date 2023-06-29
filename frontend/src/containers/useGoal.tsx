@@ -48,9 +48,7 @@ const useGoal = () => {
         message: "Goal has been created successfully",
       });
       setPage(1);
-      fetchGoals(1, 6, () => {
-        close();
-      });
+      fetchGoals(1, 6, close);
     });
   };
 
@@ -110,9 +108,7 @@ const useGoal = () => {
         message: "Goal has been deleted successfully",
       });
       setPage(1);
-      fetchGoals(1, 6, () => {
-        closeDelete();
-      });
+      fetchGoals(1, 6, closeDelete);
     });
   };
 

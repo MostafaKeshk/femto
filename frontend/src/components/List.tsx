@@ -1,6 +1,7 @@
-import { Grid, Loader, Box, Pagination, Text } from "@mantine/core";
+import { Grid, Loader, Box, Pagination, Text, CSSObject } from "@mantine/core";
 import React from "react";
 import { paginate } from "../utils/paginate";
+import EmptySvg from "../assets/EmptySvg";
 
 type IProps = {
   name: string;
@@ -14,11 +15,12 @@ type IProps = {
 
 const classes = {
   container: {
-    height: "50vh",
+    height: "400px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-  },
+    flexDirection: "column",
+  } as CSSObject,
 };
 
 const List: React.FC<IProps> = ({
@@ -39,15 +41,18 @@ const List: React.FC<IProps> = ({
   if (count === 0)
     return (
       <Box sx={classes.container}>
-        <Text>No {name} were found</Text>
+        <EmptySvg />
+        <Text color="brand" weight="bold" mt="xs">
+          No {name} were found
+        </Text>
       </Box>
     );
   return (
-    <Box>
+    <Box sx={{ width: "100%", minHeight: "400px" }} mt="xs">
       <Grid>
         {list &&
           list.map((li: any, index: number) => (
-            <Grid.Col key={index} span={4}>
+            <Grid.Col key={index} xs={12} md={6} lg={4}>
               {React.cloneElement(Card, { data: li })}
             </Grid.Col>
           ))}

@@ -5,32 +5,34 @@ import Login from "../pages/Login";
 import paths from "./paths";
 
 import Register from "../pages/Register";
-import Home from "../pages/Home";
 
 import { RedirectToHome, RedirectToNotFound } from "./utils";
-import Layout from "../components/Layout";
+import UserLayout from "../components/Layouts/UserLayout";
+import AuthLayout from "../components/Layouts/AuthLayout";
+
 import Goals from "../pages/Goals";
+import Settings from "../pages/Settings";
 
 const Navigation = () => {
   return (
     <RouterRoutes>
-      <Route path={paths.home} element={<RedirectToHome Component={Home} />} />
+      <Route element={<AuthLayout />}>
+        <Route
+          path={paths.login}
+          element={<RedirectToHome Component={Login} />}
+        />
 
-      <Route
-        path={paths.login}
-        element={<RedirectToHome Component={Login} />}
-      />
-
-      <Route
-        path={paths.register}
-        element={<RedirectToHome Component={Register} />}
-      />
-
-      <Route element={<Layout />}>
-        <Route path={paths.goals} element={<Goals />} />
+        <Route
+          path={paths.register}
+          element={<RedirectToHome Component={Register} />}
+        />
       </Route>
 
-      <Route path="*" element={<RedirectToNotFound />} />
+      <Route element={<UserLayout />}>
+        <Route path={paths.goals} element={<Goals />} />
+        <Route path={paths.settings} element={<Settings />} />
+        <Route path="*" element={<RedirectToNotFound />} />
+      </Route>
     </RouterRoutes>
   );
 };

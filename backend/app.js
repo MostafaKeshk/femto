@@ -1,12 +1,12 @@
 import express from "express";
-import authRoutes from "./routes/authRoutes";
-import goalRoutes from "./routes/goalRoutes";
+import authRoutes from "./routes/authRoutes.js";
+import goalRoutes from "./routes/goalRoutes.js";
 
 import cors from "cors";
 
-import { connectToDB } from "./utils/connectToDB";
-import { upload } from "./utils/upload";
-import authentication from "./middlewares/authentication";
+import { connectToDB } from "./utils/connectToDB.js";
+import { upload } from "./utils/upload.js";
+import authentication from "./middlewares/authentication.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
