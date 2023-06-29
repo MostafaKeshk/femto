@@ -1,9 +1,18 @@
-import { MantineProvider, Text } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
+import Navigation from "./routes/Navigation";
+import { AuthProvider } from "./contexts/AuthContext";
+import { BrowserRouter } from "react-router-dom";
+import { Notifications } from "@mantine/notifications";
 
 export default function App() {
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Text>Welcome to Mantine!</Text>
-    </MantineProvider>
+    <BrowserRouter>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <AuthProvider>
+          <Notifications />
+          <Navigation />
+        </AuthProvider>
+      </MantineProvider>
+    </BrowserRouter>
   );
 }
