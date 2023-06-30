@@ -9,9 +9,9 @@ import { upload } from "./utils/upload.js";
 import authentication from "./middlewares/authentication.js";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
-app.use(cors({origin:true,credentials: true}))
+app.use(cors())
 
 connectToDB();
 
@@ -32,3 +32,5 @@ app.use("/api/goals", authentication, goalRoutes);
 app.listen(PORT, () => {
   console.log("Server listening on port " + PORT);
 });
+
+export default app;
