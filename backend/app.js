@@ -11,10 +11,19 @@ import authentication from "./middlewares/authentication.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const corsOption = {
+  origin: [`http://localhost:${PORT}`,'https://femto-react.vercel.app'],
+};
+app.use(cors(corsOption));
+
 connectToDB();
 
-app.use(cors());
+
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send("Femto Server!");
+})
 
 app.use("/uploads", express.static("uploads"));
 
