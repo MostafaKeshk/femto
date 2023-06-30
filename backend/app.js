@@ -22,7 +22,8 @@ connectToDB();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send("Femto Server!");
+  //to redeploy
+  res.send("Welcome to Femto Server!");
 })
 
 app.use("/uploads", express.static("uploads"));
