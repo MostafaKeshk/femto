@@ -13,7 +13,7 @@ Femto is a finance web application that helps users set and track their saving g
 ### Goals (CRUD Operations)
 
 - The goals section is an authenticated page that fetches data from the server's goals endpoint, using the user ID decoded from the JWT.
-- Users can create new goals by clicking a create button, which opens a modal with inputs for the total amount and target date. The app dynamically calculates the required monthly deposit based on these inputs. When submitted, the goal is saved through a POST endpoint.
+- Users can create new goals by clicking a create button, which opens a modal with inputs for the total amount and target date (min: next month). The app dynamically calculates the required monthly deposit based on these inputs. When submitted, the goal is saved through a POST endpoint.
 - The UI includes a list of goal cards, each displaying the total amount, target date, and required monthly deposit for a specific number of months. The goal cards also feature delete and edit buttons.
 - Clicking the delete button prompts a modal with a confirmation message. If confirmed, the goal is deleted through a DELETE endpoint.
 - Clicking the edit button opens a modal with the same functionality as the create modal, pre-filled with the existing goal data. When submitted, the goal is updated through a PATCH endpoint.

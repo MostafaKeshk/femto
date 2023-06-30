@@ -40,12 +40,21 @@ export const getAllGoals = async (req, res) => {
 export const updateGoal = async (req, res) => {
   try {
     const { id } = req.params;
-    const { total, date, userId } = req.body;
+    const { total, date } = req.body;
 
     const goal = await Goal.findById(id);
 
     if (!goal) {
       return res.status(404).json({ message: "Goal not found" });
+    }
+
+    
+    if (total <= 0) {
+      return res.status(400).json({ message: "Total cannot be 0" });
+    }
+
+    if (new Date(date) < new Date()) {
+      return res.status(400).json({ message: "Date cannot be in the past" });
     }
 
     goal.total = total;
@@ -63,6 +72,15 @@ export const updateGoal = async (req, res) => {
 export const createGoal = async (req, res) => {
   try {
     const { total, date } = req.body;
+
+    
+    if (total <= 0) {
+      return res.status(400).json({ message: "Total cannot be 0" });
+    }
+
+    if (new Date(date) < new Date()) {
+      return res.status(400).json({ message: "Date cannot be in the past" });
+    }
 
     const goal = new Goal({
       total,

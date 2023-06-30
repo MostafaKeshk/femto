@@ -1,6 +1,7 @@
 import { Modal, TextInput, Button, Text } from "@mantine/core";
 import { MonthPickerInput } from "@mantine/dates";
 import { calculateMonthlyDeposit } from "../../utils/calculateMonthlyDeposit";
+import { getNextMonth } from "../../utils/getNextMonth";
 
 type IProps = {
   isEdit: boolean;
@@ -46,7 +47,7 @@ const GoalModal: React.FC<IProps> = ({
           {...form.getInputProps("total")}
         />
         <MonthPickerInput
-          minDate={new Date()}
+          minDate={getNextMonth()}
           mt="sm"
           withAsterisk
           label="Date"
