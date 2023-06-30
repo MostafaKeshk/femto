@@ -31,17 +31,6 @@ app.get('/api', (req, res) => {
 })
 
 
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  if (origin === "https://femto-react.vercel.app") {
-    res.header("Access-Control-Allow-Origin", origin);
-  } 
-  
-  next();
-});
-
 app.use("/uploads", express.static("uploads"));
 
 app.use("/api/auth", upload.single("image"), authRoutes);
