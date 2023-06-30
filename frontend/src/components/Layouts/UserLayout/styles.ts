@@ -2,7 +2,7 @@ import { CSSObject } from "@mantine/core";
 export const styles = () => ({
   root: (theme: any): CSSObject => ({
     position: "fixed",
-    zIndex: 10000,
+    zIndex: 50,
     width: "100%",
     backgroundColor: theme.colors.brand[5],
     paddingTop: 10,

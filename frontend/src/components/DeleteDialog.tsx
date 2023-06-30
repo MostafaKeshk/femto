@@ -23,9 +23,7 @@ const DeleteDialog: React.FC<IProps> = ({
       centered
     >
       <Group position="right">
-        <Button onClick={close} variant="light">
-          Cancel
-        </Button>
+        <Button onClick={close}>Cancel</Button>
         <Button loading={loading} onClick={handleDelete} color="red">
           Delete
         </Button>
