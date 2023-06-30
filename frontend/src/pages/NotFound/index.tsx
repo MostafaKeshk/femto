@@ -16,7 +16,7 @@ const NotFound = () => {
       <Text weight="bold" fz={30} color="brand" my="sm">
         Page Not Found
       </Text>
-      <Button onClick={() => navigate(paths.goals)}>Back to home</Button>
+      <Button onClick={() => navigate(paths.home)}>Back to home</Button>
     </Box>
   );
 };
