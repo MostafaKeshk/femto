@@ -11,10 +11,14 @@ import authentication from "./middlewares/authentication.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: ["https://femto-react.vercel.app"]
-}));
-app.options('*', cors());
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 connectToDB();
 
