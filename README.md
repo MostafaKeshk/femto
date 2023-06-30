@@ -28,6 +28,7 @@ Femto is a finance web application that helps users set and track their saving g
 ### General
 
 - Each form includes validation using the yup library, ensuring that user inputs are properly validated.
+- The application has alerts notifying errors and showing success messages.
 
 ## Installation
 
