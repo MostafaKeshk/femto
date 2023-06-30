@@ -6,11 +6,12 @@ export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    const lowercaseEmail = email.toLowerCase();
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       name,
-      email,
+      email: lowercaseEmail,
       password: hashedPassword,
     });
     await user.save();
@@ -38,7 +39,9 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const lowercaseEmail = email.toLowerCase();
+
+    const user = await User.findOne({ email:lowercaseEmail });
 
     if (!user) {
       return res.status(404).json({ message: "Invalid email or password" });
@@ -74,8 +77,10 @@ export const updateUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    const lowercaseEmail = email ? email.toLowerCase() : user.email;
+
     user.name = name || user.name;
-    user.email = email || user.email;
+    user.email = lowercaseEmail;
 
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);
