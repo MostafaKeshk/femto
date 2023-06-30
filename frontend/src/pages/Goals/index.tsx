@@ -53,6 +53,7 @@ const Goals = () => {
         page={page}
         handleChangePage={handleChangePage}
       />
+      <Box />
       <GoalModal
         isEdit={!!selectedGoal._id}
         opened={opened}
