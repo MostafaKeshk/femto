@@ -1,7 +1,7 @@
-import { Box, Avatar, Text, Button, Container } from "@mantine/core";
+import { Box, Text, Container } from "@mantine/core";
 import { useAuth } from "../../../contexts/AuthContext";
 import { styles } from "./styles";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import paths from "../../../routes/paths";
 
 const Nav = () => {
@@ -41,18 +41,9 @@ const Nav = () => {
           </Text>
         </Box>
 
-        <Box sx={classes.center}>
-          <Avatar
-            mr="sm"
-            src={user?.image}
-            alt={user?.name}
-            radius={100}
-            size={50}
-          />
-          <Text color="white" weight="bold">
-            {user?.name}
-          </Text>
-        </Box>
+        <Text color="white" weight="bold">
+          {user?.name}
+        </Text>
       </Container>
     </Box>
   );

@@ -5,7 +5,6 @@ import goalRoutes from "../routes/goalRoutes.js";
 import cors from "cors";
 
 import { connectToDB } from "../utils/connectToDB.js";
-import { upload } from "../utils/upload.js";
 import authentication from "../middlewares/authentication.js";
 
 const app = express();
@@ -24,9 +23,7 @@ app.get('/api', (req, res) => {
 });
 
 
-app.use("/uploads", express.static("uploads"));
-
-app.use("/api/auth", upload.single("image"), authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/goals", authentication, goalRoutes);
 
 app.listen(PORT, () => {

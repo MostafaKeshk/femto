@@ -2,7 +2,6 @@ import { useForm, yupResolver } from "@mantine/form";
 import registerSchema from "../validations/register";
 import paths from "../routes/paths";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import AuthApi from "../apis/auth";
 import useCallApi from "../hooks/useCallApi";
 import { objectToFormData } from "../utils/objectToFormData";
@@ -12,7 +11,6 @@ const useRegister = () => {
   const navigate = useNavigate();
   const { callApi, loading } = useCallApi();
   const { handleLogin } = useAuth();
-  const [image, setImage] = useState("");
 
   const handleSubmit = (values: any) => {
     const body = objectToFormData(values);
@@ -23,7 +21,6 @@ const useRegister = () => {
 
   const form = useForm({
     initialValues: {
-      image: "",
       name: "",
       email: "",
       password: "",
@@ -36,7 +33,7 @@ const useRegister = () => {
     navigate(paths.login);
   };
 
-  return { form, handleSubmit, handleNavigateLogin, image, setImage, loading };
+  return { form, handleSubmit, handleNavigateLogin, loading };
 };
 
 export default useRegister;

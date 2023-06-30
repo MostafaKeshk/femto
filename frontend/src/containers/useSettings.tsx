@@ -1,6 +1,6 @@
 import { useForm, yupResolver } from "@mantine/form";
 import settingsSchema from "../validations/settings";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import AuthApi from "../apis/auth";
 import useCallApi from "../hooks/useCallApi";
 import { objectToFormData } from "../utils/objectToFormData";
@@ -10,7 +10,6 @@ import { notifications } from "@mantine/notifications";
 const useSettings = () => {
   const { callApi, loading } = useCallApi();
   const { user, setUser } = useAuth();
-  const [image, setImage] = useState("");
 
   const handleSubmit = (values: any) => {
     const body = objectToFormData(values);
@@ -25,7 +24,6 @@ const useSettings = () => {
 
   const form = useForm({
     initialValues: {
-      image: "",
       name: "",
       email: "",
       password: "",
@@ -36,16 +34,14 @@ const useSettings = () => {
 
   useEffect(() => {
     form.setValues({
-      image: "",
       name: user.name,
       email: user.email,
       password: "",
       confirmPassword: "",
     });
-    setImage(user.image);
   }, []);
 
-  return { form, handleSubmit, image, setImage, loading };
+  return { form, handleSubmit, loading };
 };
 
 export default useSettings;

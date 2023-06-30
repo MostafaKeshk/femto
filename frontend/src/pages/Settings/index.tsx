@@ -5,12 +5,11 @@ import {
   Text,
   Container,
 } from "@mantine/core";
-import UploadImage from "../../components/Form/UploadImage";
 import { styles } from "./styles";
 import useSettings from "../../containers/useSettings";
 
 const Settings = () => {
-  const { form, handleSubmit, image, setImage, loading } = useSettings();
+  const { form, handleSubmit, loading } = useSettings();
   const classes = styles();
   return (
     <Container size="xl" sx={classes.root}>
@@ -18,12 +17,6 @@ const Settings = () => {
         Settings
       </Text>
       <form onSubmit={form.onSubmit(handleSubmit)} style={{ width: "100%" }}>
-        <UploadImage
-          image={image}
-          setImage={setImage}
-          name="image"
-          form={form}
-        />
         <TextInput
           mt="sm"
           withAsterisk

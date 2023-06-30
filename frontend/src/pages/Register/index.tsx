@@ -1,11 +1,9 @@
 import { TextInput, PasswordInput, Button, Box, Text } from "@mantine/core";
 import useRegister from "../../containers/useRegister";
-import UploadImage from "../../components/Form/UploadImage";
 import { styles } from "./styles";
 
 const Register = () => {
-  const { form, handleSubmit, handleNavigateLogin, image, setImage, loading } =
-    useRegister();
+  const { form, handleSubmit, handleNavigateLogin, loading } = useRegister();
   const classes = styles();
 
   return (
@@ -14,12 +12,6 @@ const Register = () => {
         Join us now
       </Text>
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <UploadImage
-          image={image}
-          setImage={setImage}
-          name="image"
-          form={form}
-        />
         <TextInput
           mt="sm"
           withAsterisk

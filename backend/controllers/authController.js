@@ -1,12 +1,10 @@
 import bcrypt from "bcrypt";
 import User from "../models/user.js";
 import { generateToken } from "../utils/jwt.js";
-import { imageLink } from "../utils/imageLink.js";
 
 export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const image = imageLink(req.file.path);
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -14,7 +12,6 @@ export const register = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      image,
     });
     await user.save();
 
@@ -65,7 +62,6 @@ export const updateUser = async (req, res) => {
   try {
 
     const { name, email, password } = req.body;
-    const image = imageLink(req.file.path);
     const userId = req.id;
 
     const user = await User.findById(userId);
@@ -76,7 +72,6 @@ export const updateUser = async (req, res) => {
 
     user.name = name || user.name;
     user.email = email || user.email;
-    user.image = image || user.image;
 
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);

@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 
 const registerSchema = Yup.object().shape({
-  image: Yup.string().required("Image is required"),
   name: Yup.string().required("Name is required"),
   email: Yup.string()
     .required("Email is required")
