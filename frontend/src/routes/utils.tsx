@@ -11,7 +11,7 @@ export const RedirectToHome: React.FC<IProps> = ({ Component }) => {
   const { user } = useAuth();
 
   if (user) {
-    return <Navigate to={paths.goals} />;
+    return <Navigate to={paths.home} />;
   }
 
   return <Component />;

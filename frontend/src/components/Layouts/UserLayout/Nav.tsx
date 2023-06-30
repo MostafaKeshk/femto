@@ -31,13 +31,13 @@ const Nav = () => {
             Settings
           </Text>
           <Text
-            onClick={() => navigate(paths.goals)}
+            onClick={() => navigate(paths.home)}
             color="white"
             weight="bold"
             sx={classes.link}
             mr="sm"
           >
-            Goals
+            Home
           </Text>
         </Box>
 

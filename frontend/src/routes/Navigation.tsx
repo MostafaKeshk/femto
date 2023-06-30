@@ -29,7 +29,7 @@ const Navigation = () => {
       </Route>
 
       <Route element={<UserLayout />}>
-        <Route path={paths.goals} element={<Goals />} />
+        <Route path={paths.home} element={<Goals />} />
         <Route path={paths.settings} element={<Settings />} />
         <Route path="*" element={<RedirectToNotFound />} />
       </Route>
