@@ -3,7 +3,6 @@ import settingsSchema from "../validations/settings";
 import { useEffect } from "react";
 import AuthApi from "../apis/auth";
 import useCallApi from "../hooks/useCallApi";
-import { objectToFormData } from "../utils/objectToFormData";
 import { useAuth } from "../contexts/AuthContext";
 import { notifications } from "@mantine/notifications";
 
@@ -12,8 +11,7 @@ const useSettings = () => {
   const { user, setUser } = useAuth();
 
   const handleSubmit = (values: any) => {
-    const body = objectToFormData(values);
-    callApi(AuthApi.update(body), (response: any) => {
+    callApi(AuthApi.update(values), (response: any) => {
       setUser(response.user);
       notifications.show({
         color: "green",

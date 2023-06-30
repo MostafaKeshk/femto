@@ -4,7 +4,6 @@ import paths from "../routes/paths";
 import { useNavigate } from "react-router-dom";
 import AuthApi from "../apis/auth";
 import useCallApi from "../hooks/useCallApi";
-import { objectToFormData } from "../utils/objectToFormData";
 import { useAuth } from "../contexts/AuthContext";
 
 const useRegister = () => {
@@ -13,8 +12,7 @@ const useRegister = () => {
   const { handleLogin } = useAuth();
 
   const handleSubmit = (values: any) => {
-    const body = objectToFormData(values);
-    callApi(AuthApi.register(body), (response: any) => {
+    callApi(AuthApi.register(values), (response: any) => {
       handleLogin(response.user, response.token);
     });
   };
