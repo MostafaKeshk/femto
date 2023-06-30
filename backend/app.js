@@ -19,7 +19,6 @@ connectToDB();
 app.use(express.json());
 
 app.get('/api', (req, res) => {
-  //to redeploy
   res.send("Welcome to Femto Server!");
 })
 
