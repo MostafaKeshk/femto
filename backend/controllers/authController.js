@@ -26,6 +26,10 @@ export const register = async (req, res) => {
       token,
     });
   } catch (error) {
+    if(error.message.includes("duplicate")){
+      res.status(500).json({ message: "Email already exists" })
+      return;
+    }
     res.status(500).json({ message: error.message });
   }
 };
@@ -88,7 +92,10 @@ export const updateUser = async (req, res) => {
       user: userWithoutPassword,
     });
   } catch (error) {
-    console.log({error})
+    if(error.message.includes("duplicate")){
+      res.status(500).json({ message: "Email already exists" })
+      return;
+    }
     res.status(500).json({ message: "Failed to update user" });
   }
 };
